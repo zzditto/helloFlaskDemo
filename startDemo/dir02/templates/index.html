@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% from 'macro.html' import qux %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ user.username }}'s Watchlist</title>
+</head>
+<body><a href="{{ url_for('index') }}">&larr; Return</a>
+<h2>{{ user.username }}</h2>
+{% if user.bio %}
+    <i>{{ user.bio }}</i>
+{% else %}
+    <i>This user has not provided a bio.</i>
+{% endif %}
+{# 下面是电影清单（这是注释） #}
+<h5>{{ user.username }}'s Watchlist ({{ movies|length }}):</h5>
+<ul>
+    {% for movie in movies %}
+        <li>{{ movie.name }} - {{ movie.year }}</li>
+    {% endfor %}
+</ul>
+<div>
+    {% set textnavigation="testname" %}
+    <p>{{ textnavigation }}</p>
+    <p>{{ foo }}</p>
+</div>
+<div>
+    <p>{{ user.username | title }}</p>
+    <p>{{ movies | length }}</p>
+    <p>
+        {% filter upper %}
+            This text becoms uppercase.
+        {% endfilter %}
+    </p>
+    <p>{{ user.username | safe }}</p>
+    <p>{{ user.username|custom_filter }}</p>
+</div>
+<div>
+    {{ qux(amount=9) }}
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>
