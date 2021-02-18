@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_form %}
+
+{% block content %}
+    <div>
+        <div>
+            {{ render_form(form,button_map={'submit':'success'}) }}
+        </div>
+
+        <div class="h5">
+            {{ messages|length }} messages
+            <small class="float-right">
+                <a href="#bottom" title="Go Bottom">&#8595;</a>
+            </small>
+        </div>
+        <ul class="list-group">
+            {% for message in messages %}
+                <li class="list-group-item">
+                    <div class="h5">
+                        <span class="text-success">{{ message.name }}</span>
+                        <small class="text-muted sub-title" style="font-size: 0.65em">#{{ loop.revindex }}</small>
+                        <small class="text-muted sub-title float-right"
+                               style="font-size: 0.7em" data-toggle="tooltip" data-placement="top" data-delay="500"
+                               data-timestamp="{{ message.timestamp.strftime('%Y-%m-%dT%H:%M:%SZ') }}">{{ moment(message.timestamp).fromNow(refresh=True) }}</small>
+                    </div>
+                    <div class="h6">
+                        {{ message.body }}
+                        <div class="float-right">
+                            <form class="inline" method="post" action="{{ url_for('delete',id=message.id) }}">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">DELETE
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    <script>
+        $(function () {
+            function render_time() {
+                return moment($(this).data('timestamp')).format('lll')
+            }
+
+            $('[data-toggle="tooltip"]').tooltip(
+                {title: render_time}
+            );
+        })
+    </script>
+
+{% endblock %}

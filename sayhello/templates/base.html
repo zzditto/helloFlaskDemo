@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sayhello!</title>
+    <link rel="icon" href="{{ url_for('static',filename='favicon.ico') }}">
+    {{ bootstrap.load_css() }}
+    {{ bootstrap.load_js() }}
+    {#    local_js=url_for('static',filename='js/moment-with-locales.min.js')#}
+    {{ moment.include_moment() }}
+        {{ moment.locale(auto_detect=True) }}
+
+</head>
+<body>
+<main class="container" style="width: 700px">
+    <header class="mb-5">
+        <h1 class="text-center display-4">
+            <a href="{{ url_for('index') }}" class="text-success"><strong>SayHello</strong></a>
+            <small class="text-muted sub-title" style="font-size: 20px">to the world</small>
+        </h1>
+    </header>
+
+    {#    flash#}
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ message }}</strong>
+        </div>
+    {% endfor %}
+
+    {% block content %}{% endblock %}
+
+
+    <!--    foot-->
+    <footer>
+        <div class="h6 text-center">@ 2021 zzditto/nnzz1314/query-2021</div>
+        <div id="bottom" class="text-center h5"><small><a href="#">&#8593;</a></small></div>
+    </footer>
+
+</main>
+
+
+</body>
+</html>
