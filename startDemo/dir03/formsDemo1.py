@@ -8,6 +8,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, SubmitField, PasswordField, IntegerField
 from wtforms.validators import DataRequired, Length, ValidationError
+from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 
 # 自定义验证器
@@ -33,3 +34,8 @@ class LoginForm(MyBaseForm):
     age = IntegerField("Age", validators=[is_42()])
     remember = BooleanField('Remeber me')
     submit = SubmitField(label='Log in')
+
+
+class UploadForm(FlaskForm):
+    photo = FileField("Upload Image", validators=[FileRequired(), FileAllowed(['jpg', 'jpeg', 'png', 'gif'])])
+    submit = SubmitField(label="Upload")
