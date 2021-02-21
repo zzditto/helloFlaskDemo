@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+{% block content %}
+    <h3>文件上传区：</h3>
+    <form method="post" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.csvdata(accept=".csv") }}
+        </div>
+        {{ form.submit(class='btn btn-primary') }}
+    </form>
+{% endblock %}
+
+{# upload file #}

@@ -10,6 +10,8 @@ bootstrap-flask = "*"
 flask-moment = "*"
 flask-debugtoolbar = "*"
 pymysql = "*"
+pandas = "*"
+flask-ckeditor = "*"
 
 [dev-packages]
 faker = "*"

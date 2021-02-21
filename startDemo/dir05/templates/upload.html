@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% from 'macro.html' import form_field %}
+
+{% block title %}Upload-Img{% endblock %}
+
+{% block content %}
+        <h3>图片上传区域：</h3>
+        <form method="post" enctype="multipart/form-data" class="mt-3">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                {{ form_field(form.photo(accept=".jpg, .jpeg, .png, .gif")) }}
+            </div>
+            {{ form.submit }}
+        </form>
+{% endblock %}

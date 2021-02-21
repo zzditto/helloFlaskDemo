@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% from 'macro.html' import form_field %}
+
+{% block title %}Show-Img{% endblock %}
+
+{% block content %}
+        <h3>图片展示区域：</h3>
+        {% if session.filenames %}
+            {% for filename in session.filenames %}
+                <a href="{{ url_for("get_full_path",filename=filename) }}" target="_blank"><img class=" img-rounded"
+                src="{{ url_for("get_full_path",filename=filename) }}"></a>
+            {% endfor %}
+        {% endif %}
+{% endblock %}

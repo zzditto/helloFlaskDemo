@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h3>文件展示区</h3>
+    <form method="get" role="form">
+        <div class="form-group">
+            <label for="name">展示框：</label>
+            <textarea id="name" class="form-control" rows="6">{{ data }}</textarea>
+        </div>
+    </form>
+{% endblock %}
+
+{# show data #}
